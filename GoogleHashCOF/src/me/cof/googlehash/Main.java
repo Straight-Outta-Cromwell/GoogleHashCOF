@@ -1,30 +1,42 @@
 package me.cof.googlehash;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-	
-	public final static int ROWS;
-	public final static int COLUMNS;
-	public final static int NUM_VEHICLES;
-	public final static int NUM_RIDES;
-	public final static int BONUS_VALUE;
-	public final static int MAX_STEPS;
-	
-	List<Vehicle> vehicles = new ArrayList<Vehicle>();
-	List<Ride> rides = new ArrayList<Ride>();
-	
+
+	public static int ROWS;
+	public static int COLUMNS;
+	public static int NUM_VEHICLES;
+	public static int NUM_RIDES;
+	public static int BONUS_VALUE;
+	public static int MAX_STEPS;
+
+	static List<Vehicle> vehicles = new ArrayList<Vehicle>();
+	static List<Ride> rides = new ArrayList<Ride>();
+
 	public static void main(String[] args) {
+		inputFile("examples/a_example.in");
+		
+		// Init all of the cars
+		for (int i = 0; i < NUM_VEHICLES; i++){
+			vehicles.add(new Vehicle());
+		}
 	}
-	
-	void inputFile(String filePath){
-		Scanner input;
-		
-		input = new Scanner(new File(filePath));
-		
+
+	static void inputFile(String filePath) {
+		Scanner input = null;
+
+		try {
+			input = new Scanner(new File(filePath));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		// Read the first line - always the city setup
 		String line = input.nextLine();
 		String[] properties = line.split(" ");
@@ -34,13 +46,15 @@ public class Main {
 		NUM_RIDES = Integer.parseInt(properties[3]);
 		BONUS_VALUE = Integer.parseInt(properties[4]);
 		MAX_STEPS = Integer.parseInt(properties[5]);
-		
-		while (input.hasNextLine()){
+
+		while (input.hasNextLine()) {
 			line = input.nextLine();
 			String[] values = line.split(" ");
-			rides.add(new Ride());
+			int[] startPoint = { Integer.parseInt(values[0]), Integer.parseInt(values[1]) };
+			int[] endPoint = { Integer.parseInt(values[2]), Integer.parseInt(values[3]) };
+
+			rides.add(new Ride(Integer.parseInt(values[4]), Integer.parseInt(values[5]), startPoint, endPoint));
 		}
-		
-		
+
 	}
 }
