@@ -13,14 +13,14 @@ public class Output {
 	//Constructor
 	public Output(List<Vehicle>vehicles, String filepath) {
 		this.vehicles = vehicles;
-		this.filepath = filepath;
+		this.filepath = filepath; //"examples/output.txt"
 	}
 	
 	//Main file generator
 	public void generateFile() {
 		try {
 			//Create a new output file
-            File file = new File("examples/output.txt");
+            File file = new File(filepath);
             if (!file.exists()) {
                 file.createNewFile();
             }
