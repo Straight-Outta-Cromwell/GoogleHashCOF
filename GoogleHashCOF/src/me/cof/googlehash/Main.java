@@ -15,8 +15,9 @@ public class Main {
 	public static int BONUS_VALUE;
 	public static int MAX_STEPS;
 	
-	public static int POINTS;
-	public static int CURRENT_TIME;
+	public static int POINTS = 0;
+	public static int CURRENT_TIME = 0;
+	public static int COMPLETED_RIDES = 0;
 
 	static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	public static List<Ride> rides = new ArrayList<Ride>();
@@ -28,6 +29,17 @@ public class Main {
 		for (int i = 0; i < NUM_VEHICLES; i++){
 			vehicles.add(new Vehicle());
 		}
+		
+		while(CURRENT_TIME < MAX_STEPS && COMPLETED_RIDES < NUM_RIDES){
+			System.out.println("Current Turn: " + CURRENT_TIME);
+			for (Vehicle v : vehicles){
+				v.MoveTowardsTarget();
+			}
+			
+			CURRENT_TIME++;
+		}
+		
+		System.out.println("Amount of Points: " + POINTS);
 	}
 
 	static void inputFile(String filePath) {
