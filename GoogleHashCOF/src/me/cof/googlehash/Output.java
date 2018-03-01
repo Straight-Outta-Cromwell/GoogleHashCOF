@@ -26,10 +26,11 @@ public class Output {
             
             FileWriter writer = new FileWriter(file);
             
-            for (int i = 0; i > vehicles.size(); i++) {
-            	String data = "";
-            	writer.write(data);
-    		}
+            for (Vehicle car : vehicles) {
+            	//String data = car.completedRides.size();
+            	
+            	//writer.write(data);
+            }
             
             //End of generator
             writer.close();
