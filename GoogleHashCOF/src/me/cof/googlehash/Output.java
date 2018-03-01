@@ -18,29 +18,25 @@ public class Output {
 	
 	//Main file generator
 	public void generateFile() {
-		File f = new File(filepath);
-		
-		for (int i = 0; i > vehicles.size(); i++) {
-			
-		}
-		
-	}
-	
-	public static void main(String[] args) { //For testing, remove soon!
 		try {
             File file = new File("examples/output.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
+            
             FileWriter writer = new FileWriter(file);
             
-            writer.write("This is an string written to a file");
-            writer.flush();
-            writer.close();
+            for (int i = 0; i > vehicles.size(); i++) {
+            	String data = "";
+            	writer.write(data);
+    		}
             
-            System.out.println("File written Succesfully");
+            //End of generator
+            writer.close();
         } catch (IOException e) {
+        	
+        	//Catch and print exception
             e.printStackTrace();
-        }
+        }	
 	}
 }
