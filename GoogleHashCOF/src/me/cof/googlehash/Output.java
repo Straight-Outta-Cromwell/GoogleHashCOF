@@ -31,7 +31,7 @@ public class Output {
             for (Vehicle car : vehicles) {
             	
             	//Set first value as the number of rides
-            	String data = car.getAmountOfRides();
+            	String data = Integer.toString(car.getAmountOfRides());
             	
             	//Iterate through the rides the vehicles have completed
             	for (Ride ride: car.getCompletedRides()) {
