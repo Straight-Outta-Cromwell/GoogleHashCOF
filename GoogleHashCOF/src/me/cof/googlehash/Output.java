@@ -13,7 +13,7 @@ public class Output {
 	//Constructor
 	public Output(List<Vehicle>vehicles, String filepath) {
 		this.vehicles = vehicles;
-		this.filepath = filepath; //Currently "examples/output.txt"
+		this.filepath = filepath; //For testing: "examples/output.txt"
 	}
 	
 	//Main file generator
