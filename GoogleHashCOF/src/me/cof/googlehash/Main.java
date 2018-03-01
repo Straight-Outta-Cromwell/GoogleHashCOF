@@ -16,6 +16,7 @@ public class Main {
 	public static int MAX_STEPS;
 	
 	public static int POINTS;
+	public static int CURRENT_TIME;
 
 	static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	public static List<Ride> rides = new ArrayList<Ride>();

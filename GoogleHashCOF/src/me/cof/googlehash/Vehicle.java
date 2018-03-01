@@ -20,14 +20,35 @@ public class Vehicle {
 	
 	public void FindNewRide(){
 		int highestReward = 0;
+		Ride highestRide = null;
 		
 		for (Ride r : Main.rides){
-			if (r.getIsFinished())
+			if (r.getIsFinished() && r.get)
 				continue;
 			
-			
-			
+			int reward = 0;
 			int distancePoints = r.getDistance();
+			int distanceToRide = GetDistance(currentPosition, r.getStartLoc());
+			
+			// The Ride cannot be completed on time
+			if (distanceToRide + distancePoints + Main.CURRENT_TIME > r.getFinishTime())
+				continue;
+			
+			reward += distancePoints;
+			
+			int arrivalTime = distanceToRide + Main.CURRENT_TIME;
+			
+			if (r.getStartTime() - arrivalTime > 2)
+				continue;
+			
+			if (r.getStartTime() - arrivalTime == 0)
+				reward += Main.BONUS_VALUE;
+			
+			if (reward > highestReward){
+				highestReward = reward;
+				highestRide = r;
+			}
+			
 		}
 		
 	}
