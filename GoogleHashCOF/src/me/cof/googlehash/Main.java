@@ -4,12 +4,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Pizza pizza = new Pizza(null);
+		Pizza pizza = new Pizza(null); //TODO Add file path
 		
+		//For loop for parsing through the X & Y coordinates of the array
 		for (int x = 0; x < pizza.getWidth() ; x++) {
 			for (int y = 0; y < pizza.getHeight() ; y++) {
 				
-				System.out.print(x + "-" + y);
+				System.out.print(x + "-" + y); //Temp
 			}
 		}
 	}
