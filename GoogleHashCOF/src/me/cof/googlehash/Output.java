@@ -19,17 +19,26 @@ public class Output {
 	//Main file generator
 	public void generateFile() {
 		try {
+			//Create a new output file
             File file = new File("examples/output.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
-            
+            //Create a file writer
             FileWriter writer = new FileWriter(file);
             
+            //Iterate through the vehicles in the array
             for (Vehicle car : vehicles) {
-            	String data = car.getCompleteRides.size() + " ";
+            	//Set first value as the number of rides
+            	String data = car.getAmountOfRides();
             	
+            	//Iterate through the rides the vehicles have completed
+            	for (Ride ride: car.getCompletedRides()) {
+            		data += " ";
+            		data += ride.getRideNum();
+            	}
             	
+            	//Adds a newline and writes the data to the file
             	data += "\n";
             	writer.write(data);
             }
