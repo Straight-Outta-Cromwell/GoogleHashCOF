@@ -4,8 +4,8 @@ public class Ride {
 	
 	private int rideNum; 
 	private static int RIDE_NUMBER;
-	private int startTime; // Earliest start
-	private int finishTime; // Latest finish
+	private final int startTime; // Earliest start
+	private final int finishTime; // Latest finish
 	private int[] startLoc = new int[2]; // [start row, start column]
 	private int[] finishLoc = new int[2]; // [finish row, finish column]
 	
