@@ -23,11 +23,11 @@ public class Vehicle {
 		Ride highestRide = null;
 		
 		for (Ride r : Main.rides){
-			if (r.getIsFinished() && r.get)
+			if (r.getIsFinished() && r.isPickedUp())
 				continue;
 			
 			int reward = 0;
-			int distancePoints = r.getDistance();
+			int distancePoints = r.distance();
 			int distanceToRide = GetDistance(currentPosition, r.getStartLoc());
 			
 			// The Ride cannot be completed on time
@@ -48,19 +48,21 @@ public class Vehicle {
 				highestReward = reward;
 				highestRide = r;
 			}
-			
 		}
 		
-	}
-	
-	private int CalculateRideReward(){
-		return 0;
+		currentRide = highestRide;
+		targetPosition = currentRide.getStartLoc();
+		
 	}
 	
 	public void MoveTowardsTarget(){
 		if (currentPosition == targetPosition){
-			//currentRide.complete();
-			FindNewRide();
+			if (targetPosition == currentRide.getStartLoc())
+				targetPosition = currentRide.getFinishLoc();
+			else if (targetPosition == currentRide.getFinishLoc()){
+				currentRide.complete();
+				FindNewRide();
+			}
 		}
 		
 		// Move Right
