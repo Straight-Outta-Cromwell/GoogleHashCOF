@@ -11,6 +11,7 @@ public class Ride {
 	private boolean isFinished = false; // IF the ride has been completed
 	private boolean isPickedUp = false;
 	private int pickUpTime; // Time ride is picked up
+	public Vehicle takenBy;
 	
 	public Ride(int startTime, int finishTime, int[] startLoc, int[] finishLoc) {
 		this.startTime = startTime;

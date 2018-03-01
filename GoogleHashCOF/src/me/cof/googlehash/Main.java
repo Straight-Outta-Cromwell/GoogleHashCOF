@@ -23,7 +23,7 @@ public class Main {
 	public static List<Ride> rides = new ArrayList<Ride>();
 
 	public static void main(String[] args) {
-		inputFile("examples/c_no_hurry.in");
+		inputFile("examples/b_should_be_easy.in");
 		
 		// Init all of the cars
 		for (int i = 0; i < NUM_VEHICLES; i++){

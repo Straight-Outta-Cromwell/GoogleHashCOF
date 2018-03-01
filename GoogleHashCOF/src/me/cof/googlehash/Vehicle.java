@@ -27,6 +27,8 @@ public class Vehicle {
 		Ride highestRide = null;
 
 		for (Ride r : Main.rides) {
+			int highPoints = 0;
+			int highPoints2 = 0;
 			if (r.getIsFinished() && r.isPickedUp())
 				continue;
 
@@ -42,14 +44,37 @@ public class Vehicle {
 
 			int arrivalTime = distanceToRide + Main.CURRENT_TIME;
 
-			if (r.getStartTime() - arrivalTime > Main.BONUS_VALUE)
-				reward -= Main.BONUS_VALUE;
+//			if (r.getStartTime() - arrivalTime == 0)
+//				reward += Main.BONUS_VALUE * 2;
+			
+			if (reward > highPoints)
+				highPoints = reward;
+			
+			for (Ride r2 : Main.rides) {
+				if (r2.getIsFinished() && r2.isPickedUp())
+					continue;
 
-			if (r.getStartTime() - arrivalTime == 0)
-				reward += Main.BONUS_VALUE;
+				int reward2 = 0;
+				int distancePoints2 = r2.distance();
+				int distanceToRide2 = GetDistance(r.getFinishLoc(), r2.getStartLoc());
 
-			if (reward > highestReward) {
-				highestReward = reward;
+				// The Ride cannot be completed on time
+				if (distanceToRide2 + distancePoints2 + distanceToRide + distancePoints + Main.CURRENT_TIME > r2.getFinishTime())
+					continue;
+
+				reward += distancePoints2;
+
+				int arrivalTime2 = distanceToRide2 + distanceToRide + distancePoints + Main.CURRENT_TIME;
+
+//				if (r2.getStartTime() - arrivalTime2 == 0)
+//					reward2 += Main.BONUS_VALUE * 2;
+				
+				if (reward2 > highPoints2)
+					highPoints2 = reward2;
+			}
+			
+			if (highPoints + highPoints2 > highestReward){
+				highestReward = highPoints + highPoints2;
 				highestRide = r;
 			}
 		}
@@ -98,15 +123,15 @@ public class Vehicle {
 		// System.out.println("Moved Car");
 	}
 
-	private int GetDistance(int[] a, int[] b) {
+	public int GetDistance(int[] a, int[] b) {
 		return (int) Math.hypot(a[0] - b[0], a[1] - b[1]);
 	}
 
-	private List<Ride> getCompletedRides() {
+	public List<Ride> getCompletedRides() {
 		return completedRides;
 	}
 
-	private int getAmountOfRides() {
+	public int getAmountOfRides() {
 		return completedRides.size();
 	}
 
