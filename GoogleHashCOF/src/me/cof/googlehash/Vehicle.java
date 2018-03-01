@@ -22,16 +22,13 @@ public class Vehicle {
 	public void FindNewRide() {
 		targetPosition = new int[2];
 		currentRide = null;
-		
+
 		int highestReward = 0;
 		Ride highestRide = null;
-		Ride highest2 = null;
 
 		for (Ride r : Main.rides) {
 			int highPoints = 0;
-			int highPoints2 = 0;
-			Ride high2 = null;
-			if (r.getIsFinished() && (r.isPickedUp() && r.takenBy != this))
+			if (r.getIsFinished() && (r.isPickedUp()))
 				continue;
 
 			int reward = 0;
@@ -46,48 +43,21 @@ public class Vehicle {
 
 			int arrivalTime = distanceToRide + Main.CURRENT_TIME;
 
-//			if (r.getStartTime() - arrivalTime == 0)
-//				reward += Main.BONUS_VALUE * 2;
-			
-			if (reward > highPoints)
-				highPoints = reward;
-			
-			for (Ride r2 : Main.rides) {
-				if (r2.getIsFinished() && r2.isPickedUp())
-					continue;
+//			if (r.getStartTime() - arrivalTime < 0)
+//				reward -= Main.BONUS_VALUE;
+//			
+			if (r.getStartTime() - arrivalTime == 0)
+				reward += Main.BONUS_VALUE;
 
-				int reward2 = 0;
-				int distancePoints2 = r2.distance();
-				int distanceToRide2 = GetDistance(r.getFinishLoc(), r2.getStartLoc());
 
-				// The Ride cannot be completed on time
-				if (distanceToRide2 + distancePoints2 + distanceToRide + distancePoints + Main.CURRENT_TIME > r2.getFinishTime())
-					continue;
-
-				reward += distancePoints2;
-
-				int arrivalTime2 = distanceToRide2 + distanceToRide + distancePoints + Main.CURRENT_TIME;
-
-//				if (r2.getStartTime() - arrivalTime2 == 0)
-//					reward2 += Main.BONUS_VALUE * 2;
-				
-				if (reward2 > highPoints2){
-					highPoints2 = reward2;
-					high2 = r2;
-				}
-			}
-			
-			if (highPoints + highPoints2 > highestReward){
-				highestReward = highPoints + highPoints2;
+			if (reward > highestReward) {
+				highestReward = reward;
 				highestRide = r;
-				highest2 = high2;
 			}
 		}
 
 		if (highestReward > 0) {
 			currentRide = highestRide;
-			highest2.setIsPickedUp();
-			highest2.takenBy = this;
 			targetPosition[0] = currentRide.getStartLoc()[0];
 			targetPosition[1] = currentRide.getStartLoc()[1];
 			currentRide.setIsPickedUp();
@@ -95,16 +65,18 @@ public class Vehicle {
 			System.out.println("Found new ride: " + currentRide.getRideNum());
 		}
 
-
 	}
 
 	public void MoveTowardsTarget() {
 		if (currentRide == null)
 			return;
-		
+
 		if (currentPosition[0] == targetPosition[0] && currentPosition[1] == targetPosition[1]) {
 			if (targetPosition[0] == currentRide.getStartLoc()[0]
 					&& targetPosition[1] == currentRide.getStartLoc()[1]) {
+				if (Main.CURRENT_TIME < currentRide.getStartTime())
+					return;
+				
 				targetPosition[0] = currentRide.getFinishLoc()[0];
 				targetPosition[1] = currentRide.getFinishLoc()[1];
 			}
@@ -114,6 +86,7 @@ public class Vehicle {
 				// System.out.println("Ride Completed!");
 				Main.COMPLETED_RIDES++;
 				currentRide.complete();
+				completedRides.add(currentRide);
 				FindNewRide();
 			}
 		}
@@ -131,7 +104,7 @@ public class Vehicle {
 	}
 
 	public int GetDistance(int[] a, int[] b) {
-		return (int) Math.hypot(a[0] - b[0], a[1] - b[1]);
+		return (a[0] - b[0]) + (a[1] - b[1]);
 	}
 
 	public List<Ride> getCompletedRides() {

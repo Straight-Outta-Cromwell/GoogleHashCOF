@@ -21,9 +21,11 @@ public class Main {
 
 	static List<Vehicle> vehicles = new ArrayList<Vehicle>();
 	public static List<Ride> rides = new ArrayList<Ride>();
+	
+	private static Output output;
 
 	public static void main(String[] args) {
-		inputFile("examples/b_should_be_easy.in");
+		inputFile("examples/a_example.in");
 		
 		// Init all of the cars
 		for (int i = 0; i < NUM_VEHICLES; i++){
@@ -41,6 +43,9 @@ public class Main {
 		
 		System.out.println("Amount of Points: " + POINTS);
 		System.out.println("Remaining Rides: " + rides.size());
+
+		output = new Output(vehicles, "examples/output_a.txt");
+		output.generateFile();
 	}
 
 	static void inputFile(String filePath) {
