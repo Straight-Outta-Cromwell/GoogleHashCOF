@@ -3,7 +3,7 @@ package me.cof.googlehash;
 public class Ride {
 	
 	private int startTime; // Earliest start
-	private int finishTime; // Lastest finish
+	private int finishTime; // Latest finish
 	private int[] startLoc = new int[2]; // [start row, start column]
 	private int[] finishLoc = new int[2]; // [finish row, finish column]
 	
