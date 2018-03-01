@@ -13,29 +13,40 @@ public class Output {
 	//Constructor
 	public Output(List<Vehicle>vehicles, String filepath) {
 		this.vehicles = vehicles;
-		this.filepath = filepath;
+		this.filepath = filepath; //Currently "examples/output.txt"
 	}
 	
 	//Main file generator
 	public void generateFile() {
 		try {
-            File file = new File("examples/output.txt");
+			//Create a new output file
+            File file = new File(filepath);
             if (!file.exists()) {
                 file.createNewFile();
             }
-            
+            //Create a file writer
             FileWriter writer = new FileWriter(file);
             
+            //Iterate through the vehicles in the array
             for (Vehicle car : vehicles) {
-            	//String data = car.completedRides.size();
             	
-            	//writer.write(data);
+            	//Set first value as the number of rides
+            	String data = car.getAmountOfRides();
+            	
+            	//Iterate through the rides the vehicles have completed
+            	for (Ride ride: car.getCompletedRides()) {
+            		data += " ";
+            		data += ride.getRideNum();
+            	}
+            	
+            	//Adds a newline and writes the data to the file
+            	data += "\n";
+            	writer.write(data);
             }
             
             //End of generator
             writer.close();
         } catch (IOException e) {
-        	
         	//Catch and print exception
             e.printStackTrace();
         }	
