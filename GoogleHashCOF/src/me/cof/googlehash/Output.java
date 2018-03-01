@@ -13,7 +13,7 @@ public class Output {
 	//Constructor
 	public Output(List<Vehicle>vehicles, String filepath) {
 		this.vehicles = vehicles;
-		this.filepath = filepath; //"examples/output.txt"
+		this.filepath = filepath; //Currently "examples/output.txt"
 	}
 	
 	//Main file generator
@@ -29,6 +29,7 @@ public class Output {
             
             //Iterate through the vehicles in the array
             for (Vehicle car : vehicles) {
+            	
             	//Set first value as the number of rides
             	String data = car.getAmountOfRides();
             	
@@ -46,7 +47,6 @@ public class Output {
             //End of generator
             writer.close();
         } catch (IOException e) {
-        	
         	//Catch and print exception
             e.printStackTrace();
         }	
