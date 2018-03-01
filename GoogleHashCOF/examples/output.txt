@@ -1,0 +1,2 @@
+This is an string written to a file 
+This is a second line.
