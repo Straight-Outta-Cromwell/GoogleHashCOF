@@ -27,7 +27,8 @@ public class Output {
             FileWriter writer = new FileWriter(file);
             
             for (int i = 0; i > vehicles.size(); i++) {
-            	String data = "";
+            	String data = vehicles[i].completedRides.size().toString();
+            	
             	writer.write(data);
     		}
             
