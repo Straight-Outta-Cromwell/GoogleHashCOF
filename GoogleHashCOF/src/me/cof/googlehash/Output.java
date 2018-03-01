@@ -1,28 +1,46 @@
 package me.cof.googlehash;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class Output {
 	//Attributes
-	List<Vehicle> vehicles = new ArrayList<Vehicle>();
+	private List<Vehicle> vehicles;
 	private String filepath;
 	
 	//Constructor
-	public Output(ArrayList<Vehicle>vehicles, String filepath) {
+	public Output(List<Vehicle>vehicles, String filepath) {
 		this.vehicles = vehicles;
 		this.filepath = filepath;
 	}
 	
 	//Main file generator
-	public File generateFile() {
+	public void generateFile() {
 		File f = new File(filepath);
 		
 		for (int i = 0; i > vehicles.size(); i++) {
 			
 		}
 		
-		return f;
+	}
+	
+	public static void main(String[] args) { //For testing, remove soon!
+		try {
+            File file = new File("examples/output.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter writer = new FileWriter(file);
+            
+            writer.write("This is an string written to a file");
+            writer.flush();
+            writer.close();
+            
+            System.out.println("File written Succesfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
