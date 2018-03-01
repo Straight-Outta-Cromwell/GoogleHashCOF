@@ -2,6 +2,8 @@ package me.cof.googlehash;
 
 public class Ride {
 	
+	private int rideNum; 
+	private static int RIDE_NUMBER;
 	private int startTime; // Earliest start
 	private int finishTime; // Latest finish
 	private int[] startLoc = new int[2]; // [start row, start column]
@@ -12,8 +14,16 @@ public class Ride {
 		this.finishTime = finishTime;
 		this.startLoc = startLoc;
 		this.finishLoc = finishLoc;
+		rideNum = RIDE_NUMBER +1;
+		RIDE_NUMBER = rideNum;
+		
+		
 		
 	}	
+	
+	public int getRideNum() {
+		return rideNum;
+	}
 	
 	public int getStartTime() {
 		return startTime;
