@@ -25,11 +25,13 @@ public class Vehicle {
 		
 		int highestReward = 0;
 		Ride highestRide = null;
+		Ride highest2 = null;
 
 		for (Ride r : Main.rides) {
 			int highPoints = 0;
 			int highPoints2 = 0;
-			if (r.getIsFinished() && r.isPickedUp())
+			Ride high2 = null;
+			if (r.getIsFinished() && (r.isPickedUp() && r.takenBy != this))
 				continue;
 
 			int reward = 0;
@@ -69,18 +71,23 @@ public class Vehicle {
 //				if (r2.getStartTime() - arrivalTime2 == 0)
 //					reward2 += Main.BONUS_VALUE * 2;
 				
-				if (reward2 > highPoints2)
+				if (reward2 > highPoints2){
 					highPoints2 = reward2;
+					high2 = r2;
+				}
 			}
 			
 			if (highPoints + highPoints2 > highestReward){
 				highestReward = highPoints + highPoints2;
 				highestRide = r;
+				highest2 = high2;
 			}
 		}
 
 		if (highestReward > 0) {
 			currentRide = highestRide;
+			highest2.setIsPickedUp();
+			highest2.takenBy = this;
 			targetPosition[0] = currentRide.getStartLoc()[0];
 			targetPosition[1] = currentRide.getStartLoc()[1];
 			currentRide.setIsPickedUp();
