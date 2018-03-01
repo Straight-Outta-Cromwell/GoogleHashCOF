@@ -3,9 +3,8 @@ package me.cof.googlehash;
 public class Main {
 
 	public static void main(String[] args) {
-		int hello = 1;
-		System.out.print("Hello World!");
-		
+		for (int i = 0; i <100; i++) {
+			System.out.print(i);
+		}	
 	}
-	
 }
