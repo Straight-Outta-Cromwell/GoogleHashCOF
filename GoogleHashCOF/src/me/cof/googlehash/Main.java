@@ -14,9 +14,11 @@ public class Main {
 	public static int NUM_RIDES;
 	public static int BONUS_VALUE;
 	public static int MAX_STEPS;
+	
+	public static int POINTS;
 
 	static List<Vehicle> vehicles = new ArrayList<Vehicle>();
-	static List<Ride> rides = new ArrayList<Ride>();
+	public static List<Ride> rides = new ArrayList<Ride>();
 
 	public static void main(String[] args) {
 		inputFile("examples/a_example.in");
