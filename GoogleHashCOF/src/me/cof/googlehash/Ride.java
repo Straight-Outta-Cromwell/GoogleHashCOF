@@ -17,11 +17,13 @@ public class Ride {
 		this.finishTime = finishTime;
 		this.startLoc = startLoc;
 		this.finishLoc = finishLoc;
-		rideNum = RIDE_NUMBER + 1;
-		RIDE_NUMBER = rideNum;	
+		rideNum = RIDE_NUMBER;
+		RIDE_NUMBER++;	
 
 	}
 	
+	// Adds the rides points to the total
+	// Bonus if applicable
 	public void complete() {
 		
 		if(startTime == pickUpTime) {
@@ -33,6 +35,7 @@ public class Ride {
 		
 	}
 	
+	// The points gained from the distance travelled
 	public int distance() {
 		return (finishLoc[0] - startLoc[0]) + (finishLoc[1] - startLoc[1]);
 	}

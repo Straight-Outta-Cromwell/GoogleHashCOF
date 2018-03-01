@@ -31,11 +31,11 @@ public class Main {
 		}
 		
 		while(CURRENT_TIME < MAX_STEPS && COMPLETED_RIDES < NUM_RIDES){
-			System.out.println("Current Turn: " + CURRENT_TIME);
+			//System.out.println("Current Turn: " + CURRENT_TIME);
 			for (Vehicle v : vehicles){
 				v.MoveTowardsTarget();
 			}
-			
+			System.out.println("Remaining Rides: " + (NUM_RIDES - COMPLETED_RIDES));
 			CURRENT_TIME++;
 		}
 		
