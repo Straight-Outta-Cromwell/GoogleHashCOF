@@ -23,7 +23,7 @@ public class Main {
 	public static List<Ride> rides = new ArrayList<Ride>();
 
 	public static void main(String[] args) {
-		inputFile("examples/a_example.in");
+		inputFile("examples/c_no_hurry.in");
 		
 		// Init all of the cars
 		for (int i = 0; i < NUM_VEHICLES; i++){
@@ -35,11 +35,12 @@ public class Main {
 			for (Vehicle v : vehicles){
 				v.MoveTowardsTarget();
 			}
-			System.out.println("Remaining Rides: " + (NUM_RIDES - COMPLETED_RIDES));
+			System.out.println("Remaining Rides: " + rides.size());
 			CURRENT_TIME++;
 		}
 		
 		System.out.println("Amount of Points: " + POINTS);
+		System.out.println("Remaining Rides: " + rides.size());
 	}
 
 	static void inputFile(String filePath) {
