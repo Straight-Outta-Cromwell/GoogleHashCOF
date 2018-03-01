@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class ReadFile {
 	
+	
+	
 	public void pizzaArray(){
 		Scanner in = null;
 		//char[][] pizza
@@ -25,7 +27,7 @@ public class ReadFile {
 		
 		char[][] pizza = new char[row][column];
 		String top = scan.next();
-		//top.substring(0, 6)
+		int max = top.charAt(0);
 		
 		
 		int count = 0;
