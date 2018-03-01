@@ -3,7 +3,7 @@ package me.cof.googlehash;
 public class Ride {
 	
 	private int rideNum; 
-	private static int RIDE_NUMBER;
+	private static int RIDE_NUMBER; // Concurrent number of ride
 	private final int startTime; // Earliest start
 	private final int finishTime; // Latest finish
 	private int[] startLoc = new int[2]; // [start row, start column]
