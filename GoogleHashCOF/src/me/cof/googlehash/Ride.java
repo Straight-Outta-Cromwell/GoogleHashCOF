@@ -38,7 +38,7 @@ public class Ride {
 	
 	// The points gained from the distance travelled
 	public int distance() {
-		return (finishLoc[0] - startLoc[0]) + (finishLoc[1] - startLoc[1]);
+		return Math.abs(startLoc[0] - finishLoc[0]) + Math.abs((startLoc[1] - finishLoc[1]));
 	}
 	
 	public void setPickUpTime(int time) {
